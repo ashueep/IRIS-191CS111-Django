@@ -12,24 +12,24 @@ class CustUserAdmin(UserAdmin):
     form = CustUserChangeForm
     add_form = CustUserCreationForm
 
-    list_display = ('userName', 'name', 'email', 'roll', 'year', 'department', 'mobileNumber')
+    list_display = ('userName', 'name', 'email', 'roll', 'year', 'department', 'mobileNumber', 'club')
     list_filter = ('is_convener','is_admin')
     
     fieldsets = (
-        (None, {'fields': ('userName', 'password')}),
-        ('Student info', {'fields': ('email','name','roll','year','department','mobileNumber')}),
+        ('login', {'fields': ('userName', 'password')}),
+        ('Student info', {'fields': ('email','name','roll','year','department','mobileNumber', 'club')}),
         ('Permissions', {'fields': ('is_convener','is_admin')}),
     )
 
     add_fieldsets = (
-        (None, {
+        ('None', {
             'classes': ('wide',),
-            'fields': ('email', 'userName', 'name', 'year', 'roll','department','mobileNumber', 'password1', 'password2'),
+            'fields': ('email', 'userName', 'name', 'year', 'roll','department','mobileNumber', 'club', 'password1', 'password2'),
         })
     )
     
-    search_fields = ('userName', 'name', 'email', 'roll', 'year', 'department', 'mobileNumber')
-    ordering      = ('userName', 'name', 'email', 'roll', 'year', 'department', 'mobileNumber')
+    search_fields = ('userName', 'name', 'email', 'roll', 'year', 'department', 'mobileNumber', 'club')
+    ordering      = ('userName', 'name', 'email', 'roll', 'year', 'department', 'mobileNumber', 'club')
     filter_horizontal = ()
 
 

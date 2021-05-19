@@ -1,30 +1,31 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from Club.models import Club
 # Create your models here.
 
 class CustUserManager(BaseUserManager):
-    def create_user(self, userName, email, name, year, roll, department, mobileNumber, password = None):
+    def create_user(self, userName, email, name, year, roll, department, mobileNumber, club, password = None):
         if not userName:
             raise ValueError('User must have a username')
         if not email:
             raise ValueError('User must have an email')
         
-        user = self.model(userName = userName, email = self.normalize_email(email), name = name, year = year, roll = roll, department = department, mobileNumber = mobileNumber,)
+        user = self.model(userName = userName, email = self.normalize_email(email), name = name, year = year, roll = roll, department = department, mobileNumber = mobileNumber,club=club)
         user.set_password(password)
         user.save(using = self._db)
 
         return user
     
-    def create_convener(self, userName, email, name, year, roll, department, mobileNumber, password = None):
-        user = self.create_user(userName, email, name, year, roll, department, mobileNumber, password)
+    def create_convener(self, userName, email, name, year, roll, department, mobileNumber, club, password = None):
+        user = self.create_user(userName, email, name, year, roll, department, mobileNumber,club, password)
 
         user.is_convener = True
         user.save(using = self._db)
 
         return user
 
-    def create_superuser(self, userName, email, name, year, roll, department, mobileNumber, password = None):
-        user = self.create_user(userName, email, name, year, roll, department, mobileNumber, password)
+    def create_superuser(self, userName, email, name, year, roll, department, mobileNumber, club, password = None):
+        user = self.create_user(userName, email, name, year, roll, department, mobileNumber,club, password)
 
         user.is_admin = True
         user.save(using = self._db)
@@ -44,6 +45,7 @@ class User(AbstractBaseUser):
     roll             = models.CharField(verbose_name = 'Roll Number', max_length = 10)
     department       = models.CharField(verbose_name = 'Department', max_length = 20)
     mobileNumber     = models.CharField(verbose_name = 'Mobile Number',max_length = 27 ,unique = True)
+    club             = models.ForeignKey(Club, default = None, on_delete = models.SET_NULL ,related_name = 'Club_Member', null = True)
     is_convener      = models.BooleanField(default = False)
     is_active        = models.BooleanField(default = True)
     is_admin         = models.BooleanField(default = False)
