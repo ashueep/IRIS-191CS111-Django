@@ -11,4 +11,10 @@ class Club(models.Model):
     def __str__(self):
         return self.name
 
-    
+class Items(models.Model):
+    name     = models.CharField(verbose_name = 'Item Name', max_length = 200, unique = True)
+    quantity = models.IntegerField(verbose_name = 'Quantity')
+    club     = models.ForeignKey(Club, on_delete = models.CASCADE, related_name = 'item_club')
+
+    def __str__(self):
+        return self.name

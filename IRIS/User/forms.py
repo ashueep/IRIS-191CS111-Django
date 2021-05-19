@@ -10,12 +10,12 @@ from django.forms import fields
 from .models import User
 
 class CustUserCreationForm(forms.ModelForm):
-    password1 = forms.CharField(label = 'Password', widget = forms.PasswordInput())
-    password2 = forms.CharField(label = 'Password confirmation', widget = forms.PasswordInput())
+    password1 = forms.CharField(label = 'Password', widget = forms.PasswordInput)
+    password2 = forms.CharField(label = 'Password confirmation', widget = forms.PasswordInput)
 
     class Meta:
         model = User
-        fields = ['userName', 'email', 'name', 'year', 'roll', 'department', 'mobileNumber', 'club']
+        fields = ('userName', 'email', 'name', 'year', 'roll', 'department', 'mobileNumber', 'club')
 
     def clean_password2(self):
         password1 = self.cleaned_data.get('password1')
