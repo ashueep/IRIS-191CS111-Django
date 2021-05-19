@@ -12,7 +12,7 @@ class Club(models.Model):
         return self.name
 
 class Items(models.Model):
-    name     = models.CharField(verbose_name = 'Item Name', max_length = 200, unique = True)
+    name     = models.CharField(verbose_name = 'Item Name', max_length = 200, unique = False)
     quantity = models.IntegerField(verbose_name = 'Quantity')
     club     = models.ForeignKey(Club, on_delete = models.CASCADE, related_name = 'item_club')
 

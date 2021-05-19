@@ -1,0 +1,11 @@
+{% extends 'User/Base.html' %}
+{% block content %}
+<a href="{% url 'home' %}">Home</a> / 
+{% comment %} <a href="{% url 'register' %}">Sign up</a> {% endcomment %}
+<h2>Login</h2>
+<form method="post">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<button type="submit">Login</button>
+</form>
+{% endblock content %}
