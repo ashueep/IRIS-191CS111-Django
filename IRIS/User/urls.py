@@ -4,4 +4,5 @@ from django.shortcuts import redirect
 
 urlpatterns = [
     path("Registeration/",  UserRegister, name="register"),
+    path("Your-Inventory/", YourInventory, name = 'Your Inventory'),
 ]

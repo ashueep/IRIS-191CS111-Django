@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render
 from .forms import CustUserCreationForm, CustUserChangeForm
+from Club.models import ItemRequest, RequestStatus
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
 # Create your views here.
@@ -17,3 +18,13 @@ def UserRegister(request):
     else:
         form = CustUserCreationForm()
     return render(request, 'User/Register.html', {'form' : form})
+
+def YourInventory(request):
+    user = request.user
+    requestsPending = ItemRequest.objects.filter(memberID = user).filter(status = RequestStatus.objects.all()[1])
+    requestsAccepted = ItemRequest.objects.filter(memberID = user).filter(status = RequestStatus.objects.all()[0])
+    requestsRejected = ItemRequest.objects.filter(memberID = user).filter(status = RequestStatus.objects.all()[2])
+
+    context = {'pending':requestsPending, 'accepted' : requestsAccepted, 'rejected' : requestsRejected}
+
+    return render(request, 'User/Inventory.html', context)
