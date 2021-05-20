@@ -18,3 +18,17 @@ class Items(models.Model):
 
     def __str__(self):
         return self.name
+
+class RequestStatus(models.Model):
+    description = models.CharField(max_length=27)
+    def __str__(self):
+        return self.description
+
+class ItemRequest(models.Model):
+    memberID    = models.ForeignKey("User.User", on_delete = models.CASCADE)
+    itemID      = models.ForeignKey(Items, on_delete = models.CASCADE)
+    createdOn   = models.DateField(default=timezone.now)
+    status      = models.ForeignKey(RequestStatus, on_delete = models.CASCADE)
+
+    def __str__(self):
+        return self.memberID.userName + "-" + self.itemID.name
