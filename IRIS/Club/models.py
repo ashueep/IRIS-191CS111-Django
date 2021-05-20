@@ -28,6 +28,7 @@ class ItemRequest(models.Model):
     memberID    = models.ForeignKey("User.User", on_delete = models.CASCADE)
     itemID      = models.ForeignKey(Items, on_delete = models.CASCADE)
     createdOn   = models.DateField(default=timezone.now)
+    requested   = models.IntegerField(verbose_name="Number of requested items ")
     status      = models.ForeignKey(RequestStatus, on_delete = models.CASCADE)
 
     def __str__(self):

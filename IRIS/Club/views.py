@@ -11,10 +11,15 @@ def YourInventory(request):
 
 
 def RequestItem(request):
+    print('request item')
     itemID = request.POST.get("itemID")
+    requested = request.POST.get("requested")
+    print(itemID + " " + requested)
     item = Items.objects.filter(id = itemID).first()
+    print(item)
     if request.method == 'POST':
-        req = ItemRequest(request.user, item, status = RequestStatus.objects.filter(pk = 1)[0])
+        req = ItemRequest(memberID = request.user, itemID = item, requested = requested ,status = RequestStatus.objects.all()[1])
         req.save()
         messages.success(request, f'Item requested!')
         return redirect('/')
+    return redirect('/')
