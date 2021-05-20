@@ -33,7 +33,7 @@
                 {% if user.is_convener %}
                   <a class="nav-item nav-link" href="#">{{ user.club }} Inventory</a>
                 {% else %}
-                  <a class="nav-item nav-link" href="#">Your Inventory</a>
+                  <a class="nav-item nav-link" href="{% url 'Your Inventory' %}">Your Inventory</a>
                 {% endif %}
               {% endif %}
             </div>
@@ -70,6 +70,7 @@
               <ul class="list-group">
               {% if user.is_convener %}
                 <li class="list-group-item list-group-item-light"><a href = "{% url 'Manage Request' %}">Manage Requests</a></li>
+                <li class="list-group-item list-group-item-light"><a href = "{% url 'Add Item' %}">Add Item to Inventory</a></li>
               {% else %}
               {% endif %}
               </ul>

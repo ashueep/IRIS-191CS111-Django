@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render
 from .models import Items, ItemRequest, RequestStatus
 from django.contrib import messages
 from django.db.models import Q
-
+from .forms import ItemForm
 # Create your views here.
 def YourInventory(request):
     user = request.user
@@ -18,6 +18,9 @@ def RequestItem(request):
     requested = request.POST.get("requested")
     print(itemID + " " + requested)
     item = Items.objects.filter(id = itemID).first()
+    if request.user.club != item.club:
+        messages.error(request, 'Error in requesting Item!')
+        return redirect('/')
     print(item)
     if request.method == 'POST':
         req = ItemRequest(memberID = request.user, itemID = item, requested = requested, club = item.club, status = RequestStatus.objects.all()[1])
@@ -71,3 +74,21 @@ def RejectRequest(request):
         reqID.save()
         messages.success(request, 'Item rejected!')
         return redirect('/')
+
+def AddItem(request):
+    club = request.user.club
+    if not request.user.is_convener:
+        messages.error(request, 'You do not have the permission!')
+        return redirect('/')
+    
+    if request.method == 'POST':
+        form = ItemForm(request.POST)
+        if form.is_valid():
+            instance = form.save(commit = False)
+            instance.club = club
+            instance.save()
+            messages.success(request, 'Item added successfully!')
+            return redirect('/')
+    else:
+        form = ItemForm()
+    return render(request, 'Club/CreateItem.html', {'form' : form})

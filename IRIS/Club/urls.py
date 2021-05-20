@@ -8,4 +8,5 @@ urlpatterns = [
     path("Manage-Requests/", ManageRequest, name = "Manage Request"),
     path("Accept-Request/", AcceptRequest, name = "Accept Request"),
     path("Reject-Request/", RejectRequest, name = "Reject Request"),
+    path("Add-Item/", AddItem, name = "Add Item"),
 ]

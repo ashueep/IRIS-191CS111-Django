@@ -1,0 +1,14 @@
+{% extends 'User/Base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <form method = "POST">
+        {% csrf_token %}
+        <fieldset>
+            <legend>
+                Add Item 
+            </legend>
+            {{ form.as_p }}
+        </fieldset>
+        <button type = "Submit"> Add Item </button>
+    </form>
+{% endblock content %}
