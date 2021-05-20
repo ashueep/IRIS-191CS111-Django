@@ -29,7 +29,7 @@ class ItemRequest(models.Model):
     itemID      = models.ForeignKey(Items, on_delete = models.CASCADE)
     createdOn   = models.DateField(default=timezone.now)
     requested   = models.IntegerField(verbose_name="Number of requested items ")
+    club        = models.ForeignKey(Club, on_delete = models.CASCADE)
     status      = models.ForeignKey(RequestStatus, on_delete = models.CASCADE)
-
     def __str__(self):
         return self.memberID.userName + "-" + self.itemID.name

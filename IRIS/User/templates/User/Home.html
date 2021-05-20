@@ -11,8 +11,8 @@
       <form action="/club/Request-Item/" class="form-inline" method="POST">
         {% csrf_token %}
         <label for="staticEmail2" class="sr-only">requested</label>
-        <input class="form-control form-control-sm" type="text" placeholder="Request the amount of {{ items.name }}(s)" name = "requested" ><br>
-        <button type = 'submit' class="btn btn-primary" onclick="/club/Request-Item/" name = 'itemID' value = '{{ items.id }}'>Request</a>
+        <input class="form-control form-control-sm" type="text" placeholder="Request the amount of {{ items.name }}(s)" name = "requested" >
+        <button type = 'submit' class="btn btn-primary" onclick="/club/Request-Item/" name = 'itemID' value = '{{ items.id }}'>Request</button>
       </form>
     </div>
   </div>

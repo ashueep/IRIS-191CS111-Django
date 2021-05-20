@@ -1,0 +1,26 @@
+{% extends "User/Base.html" %}
+
+{% block content %}
+
+{% for request in requests %}
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="..." alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{ request.itemID.name }}</h5>
+    <p class="card-text">Remaining quantity: {{ request.itemID.quantity }}</p>
+    <p class="card-text">Requested by: {{ request.memberID.userName }} - {{ request.memberID.roll }}</p>
+    <p class="card-text">Requested quantity: {{ request.requested }}</p>
+    <form action = "/club/Accept-Request/" method = POST>
+        {% csrf_token %}
+        <button class="btn btn-primary" onclick="/club/Accept-Request/" name="reqID" value="{{ request.id }}" >Accept</button>
+    </form>
+    <hr>
+    <form action = "/club/Reject-Request/" method = POST>
+        {% csrf_token %}
+        <button class="btn btn-primary" onclick="/club/Reject-Request/" name="reqID" value="{{ request.id }}" >Reject</button>
+    </form>
+  </div>
+</div>
+{% endfor %}
+
+{% endblock content %}
