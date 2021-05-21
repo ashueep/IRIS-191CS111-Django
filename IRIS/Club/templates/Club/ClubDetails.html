@@ -1,0 +1,32 @@
+{% extends "User/Base.html" %}
+
+{% block content %}
+
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Roll</th>
+      <th scope="col">Department</th>
+      <th scope="col">Permission</th>
+      <th scope="col">link</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for member in members %}
+    <tr>
+      <td>{{ member.name }}</td>
+      <td>{{ member.roll }}</td>
+      <td>{{ member.department }}</td>
+      {% if member.is_convener %}
+        <td>Convener</td>
+      {% else %}
+        <td>Member</td>
+      {% endif %}
+      <td>dummy link</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock content %}

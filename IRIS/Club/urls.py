@@ -9,4 +9,5 @@ urlpatterns = [
     path("Accept-Request/", AcceptRequest, name = "Accept Request"),
     path("Reject-Request/", RejectRequest, name = "Reject Request"),
     path("Add-Item/", AddItem, name = "Add Item"),
+    path("Club-Detils", ClubMembers, name = 'Club Details'),
 ]

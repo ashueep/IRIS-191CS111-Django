@@ -28,3 +28,8 @@ def YourInventory(request):
     context = {'pending':requestsPending, 'accepted' : requestsAccepted, 'rejected' : requestsRejected}
 
     return render(request, 'User/Inventory.html', context)
+
+def YourProfile(request):
+    user = request.user
+    context = {'user' : user}
+    return render(request, 'User/YourProfile.html', context)

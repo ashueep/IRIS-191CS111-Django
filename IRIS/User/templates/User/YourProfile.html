@@ -1,0 +1,17 @@
+{% extends "User/Base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+      <div class="media">
+        {% comment %} <img class="rounded-circle account-img" src="{{ user.profile.image.url }}"> {% endcomment %}
+        <div class="media-body">
+          <h2 class="account-heading">{{ user.userName }}</h2>
+          <p class="text-secondary">Email: {{ user.email }}</p>
+          <p class="text-secondary">Roll: {{ user.roll }}</p>
+          <p class="text-secondary">Mobile: {{ user.mobileNumber }}</p>
+        </div>
+      </div>
+      <!-- FORM HERE -->
+    </div>
+{% endblock content %}
+

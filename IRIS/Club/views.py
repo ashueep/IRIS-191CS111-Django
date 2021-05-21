@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from .models import Items, ItemRequest, RequestStatus
 from django.contrib import messages
 from django.db.models import Q
+from User.models import User
 from .forms import ItemForm
 # Create your views here.
 def YourInventory(request):
@@ -92,3 +93,12 @@ def AddItem(request):
     else:
         form = ItemForm()
     return render(request, 'Club/CreateItem.html', {'form' : form})
+
+def ClubMembers(request):
+    user = request.user
+    if not user.is_convener:
+        messages.error(request, 'You do not have permission to view this page')
+        return redirect('/')
+    members = User.objects.filter(club = user.club)
+    context = {'title' : f'{user.club} Details', 'members' : members}
+    return render(request, 'Club/ClubDetails.html', context)
