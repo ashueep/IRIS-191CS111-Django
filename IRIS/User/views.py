@@ -3,6 +3,7 @@ from .forms import CustUserCreationForm, CustUserChangeForm
 from Club.models import ItemRequest, RequestStatus
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
+from .models import User
 # Create your views here.
 def UserRegister(request):
     if request.method == 'POST':
@@ -33,3 +34,13 @@ def YourProfile(request):
     user = request.user
     context = {'user' : user}
     return render(request, 'User/YourProfile.html', context)
+
+def MemberRequest(request, username):
+    member = User.objects.filter(userName = username).first()
+    requestsPending = ItemRequest.objects.filter(memberID = member).filter(status = RequestStatus.objects.all()[1])
+    requestsAccepted = ItemRequest.objects.filter(memberID = member).filter(status = RequestStatus.objects.all()[0])
+    requestsRejected = ItemRequest.objects.filter(memberID = member).filter(status = RequestStatus.objects.all()[2])
+
+    context = {'pending':requestsPending, 'accepted' : requestsAccepted, 'rejected' : requestsRejected, 'member' : member}
+
+    return render(request, 'User/Inventory.html', context)

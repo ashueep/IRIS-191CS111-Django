@@ -23,7 +23,7 @@
       {% else %}
         <td>Member</td>
       {% endif %}
-      <td>dummy link</td>
+      <td><a href = "{% url 'Member Requests' username=member.userName %}">{{ member.userName }}</a></td>
     </tr>
     {% endfor %}
   </tbody>

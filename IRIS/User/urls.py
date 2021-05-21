@@ -6,4 +6,7 @@ urlpatterns = [
     path("Registeration/",  UserRegister, name="register"),
     path("Your-Inventory/", YourInventory, name = 'Your Inventory'),
     path("Your-Profile/", YourProfile, name = 'Your Profile'),
+    path("Member-Requests/<str:username>/", MemberRequest, name = 'Member Requests'),
+    # re_path(r'Member-Request/', MemberRequest),
+
 ]
