@@ -1,4 +1,4 @@
-{% extends "Base/User.html" %}
+{% extends "User/Base.html" %}
 
 <style>
 .container {
@@ -24,32 +24,19 @@ h4 {
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th scope="col">Select Day</th>
-            <th scope="col">Article Name</th>
-            <th scope="col">Author</th>
-            <th scope="col">Words</th>
-            <th scope="col">Shares</th>
+            <th scope="col">Item Name</th>
+            <th scope="col">Quantity</th>
           </tr>
         </thead>
         <tbody>
-          {% comment %} <tr>
-            <td>
-              <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="customCheck1" checked>
-                  <label class="custom-control-label" for="customCheck1">1</label>
-              </div>
-            </td>
-            <td>Bootstrap 4 CDN and Starter Template</td>
-            <td>Cristina</td>
-            <td>913</td>
-            <td>2.846</td>
-          </tr> {% endcomment %}
+        <form action="/club/Delete-Inventory/" method="POST">
           {% for item in items %}
             <tr>
             <td>
               <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="customCheck1" checked>
-                  <label class="custom-control-label" for="customCheck1">{{ item.name }}</label>
+                  <input type="checkbox" class="custom-control-input" name="checks[]" id="{{ item.id }}" value="{{ item.id }}" checked>
+                  {% comment %} <input type="hidden" id="{{ item.id }}"> {% endcomment %}
+                  <label class="custom-control-label" for="{{ item.id }}">{{ item.name }}</label>
               </div>
             </td>
             <td>{{ item.quantity }}</td>
@@ -57,6 +44,10 @@ h4 {
           {% endfor %}
         </tbody>
       </table>
+          {% csrf_token %}
+          {% comment %} <button type="submit" class="btn btn-success" onclick="/club/Update-Inventory/" name="Edit">Edit</button> {% endcomment %}
+          <button type="submit" class="btn btn-danger" onclick="/club/Delete-Inventory/" name="Delete">Delete</button>
+        </form>
     </div>
   </div>
 </div>

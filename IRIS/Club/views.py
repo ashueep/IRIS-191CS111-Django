@@ -102,3 +102,27 @@ def ClubMembers(request):
     members = User.objects.filter(club = user.club)
     context = {'title' : f'{user.club} Details', 'members' : members}
     return render(request, 'Club/ClubDetails.html', context)
+
+def DeleteInventory(request):
+    user = request.user
+    # print('HI')
+    if not user.is_convener:
+        messages.error(request, 'You do not have permissions to view this page!')
+        return redirect('/')
+    
+    items = Items.objects.filter(club = user.club)
+
+    context = {'items' : items}
+
+    if request.method == 'POST':
+        # print('in post')
+        items = request.POST.getlist('checks[]')
+        print(items)
+        for item in items:
+            todel = Items.objects.filter(id = item)
+            if todel.club == user.club:
+                Items.objects.filter(id = item).delete()
+        # print(items)
+        return redirect('/club/Delete-Inventory/')
+
+    return render(request, 'Club/DeleteItem.html', context)

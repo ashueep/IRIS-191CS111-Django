@@ -70,7 +70,8 @@
               <ul class="list-group">
               {% if user.is_convener %}
                 <li class="list-group-item list-group-item-light"><a href = "{% url 'Manage Request' %}">Manage Requests</a></li>
-                <li class="list-group-item list-group-item-light"><a href = "{% url 'Add Item' %}">Add Item to Inventory</a></li>
+                <li class="list-group-item list-group-item-light"><a href = "{% url 'Add Item' %}">Add Item</a></li>
+                <li class="list-group-item list-group-item-light"><a href = "{% url 'Delete Inventory' %}">Delete Item</a></li>
               {% else %}
               {% endif %}
               </ul>

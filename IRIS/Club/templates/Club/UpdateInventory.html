@@ -1,0 +1,53 @@
+{% extends "User/Base.html" %}
+
+<style>
+.container {
+  padding: 2rem 0rem;
+}
+
+h4 {
+  margin: 2rem 0rem 1rem;
+}
+
+.table-image {
+  td, th {
+    vertical-align: middle;
+  }
+}
+</style>
+
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Item Name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for item in items %}
+            <tr>
+                <td>{{ item.name }}</td>
+                <td>{{ item.quantity }}</td>
+                {% comment %} <td>2.846</td> {% endcomment %}
+                <td>
+                {% comment %} <button type="button" class="btn btn-primary">V</button> {% endcomment %}
+                <form action="/club/Update-Inventory/" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-success" onclick="/club/Update-Inventory/" name="Edit" value="{{ item.id }}">Edit</button>
+                    <button type="submit" class="btn btn-danger" onclick="/club/Update-Inventory/" name="Delete" value="{{ item.id }}">Delete</button>
+                </form>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock content %}
