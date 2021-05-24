@@ -19,3 +19,21 @@ The features of this website is divided into two parts
 2. Each convener of a club can add, delete items from the club inventory
 3. Each convener can check the student members of the club and also check their history of requests
 4. conveners can also check reject/approve a request of a member while its in pending state.
+
+## Installation and Usage
+
+After cloning the repo
+
+1. Make sure to have python and virtual env installed in the system
+2. Run to create venv vritual env
+        `python -m venv venv`
+3. Activate virtual env to start project
+4. Run to clone
+5. Change to `IRIS/` dir
+6. Run
+        `python manage.py makemigrations`
+        `python manage.py migrate`
+        `python manage.py runserver`
+7. This should run on the default `8000` port, open `127.0.0.1:8000` on any browser.
+
+> For admin, redirect to `127.0.0.1:8000/admin/` and enter default credentials `username: admin, password: admin`.
