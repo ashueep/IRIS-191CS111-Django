@@ -37,6 +37,10 @@ After cloning the repo
 
 > For admin, redirect to `127.0.0.1:8000/admin/` and enter default credentials `username: admin, password: admin`.
 
+## Bugs/Not completed features
+
+- Not completed the edit feature option in items
+
 ## Screenshots
 
 <img src="Screenshots/Home.png">
