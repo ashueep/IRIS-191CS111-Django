@@ -116,12 +116,18 @@ def DeleteInventory(request):
 
     if request.method == 'POST':
         # print('in post')
-        items = request.POST.getlist('checks[]')
-        print(items)
-        for item in items:
-            todel = Items.objects.filter(id = item)
-            if todel.club == user.club:
-                Items.objects.filter(id = item).delete()
+        if request.POST.get('Delete'):
+            items = request.POST.getlist('checks[]')
+            print(items)
+            for item in items:
+                todel = Items.objects.filter(id = item).first()
+                if todel.club == user.club:
+                    Items.objects.filter(id = item).delete()
+        if request.POST.get('Edit'):
+            # items = request.POST.getlist('id')
+            items = request.POST.getlist('checks[]')
+            print(items)
+            pass 
         # print(items)
         return redirect('/club/Delete-Inventory/')
 

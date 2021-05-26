@@ -39,14 +39,14 @@ h4 {
                   <label class="custom-control-label" for="{{ item.id }}">{{ item.name }}</label>
               </div>
             </td>
-            <td>{{ item.quantity }}</td>
+            <td id="{{ item.id }}" contenteditable='true'>{{ item.quantity }}</td>
           </tr>
           {% endfor %}
         </tbody>
       </table>
           {% csrf_token %}
-          {% comment %} <button type="submit" class="btn btn-success" onclick="/club/Update-Inventory/" name="Edit">Edit</button> {% endcomment %}
-          <button type="submit" class="btn btn-danger" onclick="/club/Delete-Inventory/" name="Delete">Delete</button>
+          <button type="submit" class="btn btn-success" onclick="/club/Delete-Inventory/" name="Edit" value="Edit">Edit</button>
+          <button type="submit" class="btn btn-danger" onclick="/club/Delete-Inventory/" name="Delete" value="Delete">Delete</button>
         </form>
     </div>
   </div>

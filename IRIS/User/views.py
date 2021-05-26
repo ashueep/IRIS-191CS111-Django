@@ -41,6 +41,6 @@ def MemberRequest(request, username):
     requestsAccepted = ItemRequest.objects.filter(memberID = member).filter(status = RequestStatus.objects.all()[0])
     requestsRejected = ItemRequest.objects.filter(memberID = member).filter(status = RequestStatus.objects.all()[2])
 
-    context = {'pending':requestsPending, 'accepted' : requestsAccepted, 'rejected' : requestsRejected, 'member' : member}
+    context = {'pending' : requestsPending, 'accepted' : requestsAccepted, 'rejected' : requestsRejected, 'member' : member}
 
     return render(request, 'User/Inventory.html', context)
