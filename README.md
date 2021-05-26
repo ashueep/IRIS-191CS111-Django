@@ -36,3 +36,10 @@ After cloning the repo
 6. This should run on the default `8000` port, open `127.0.0.1:8000` on any browser.
 
 > For admin, redirect to `127.0.0.1:8000/admin/` and enter default credentials `username: admin, password: admin`.
+
+## Screenshots
+
+<img src="Screenshots/Home.png">
+<img src="Screenshots/Members.png">
+<img src="Screenshots/Updating item.png">
+<img src="Screenshots/Adding item.png">
