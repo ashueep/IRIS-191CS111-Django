@@ -52,7 +52,7 @@ def AcceptRequest(request):
     if request.method == 'POST':
         if item.quantity < reqID.requested:
             messages.error(request, 'Cant accept request due to large request size!')
-            return redirect('/club/Manage-Request')
+            return redirect('/club/Manage-Requests')
         item.quantity -= reqID.requested
         item.save()
         reqID.status = RequestStatus.objects.all()[0]

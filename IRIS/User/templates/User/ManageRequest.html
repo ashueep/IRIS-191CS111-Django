@@ -4,7 +4,7 @@
 
 {% for request in requests %}
 <div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="..." alt="Card image cap">
+  <img class="card-img-top" src="{{ request.itemID.image.url }}" alt="Card image cap">
   <div class="card-body">
     <h5 class="card-title">{{ request.itemID.name }}</h5>
     <p class="card-text">Remaining quantity: {{ request.itemID.quantity }}</p>
