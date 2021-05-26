@@ -28,12 +28,14 @@ After cloning the repo
 2. Run to create venv vritual env
         `python -m venv venv`
 3. Activate virtual env to start project
-4. Change to `IRIS/` dir
-5. Run
+4. run 
+        `pip install -r requirements.txt`
+5. Change to `IRIS/` dir
+6. Run
         `python manage.py makemigrations`
         `python manage.py migrate`
         `python manage.py runserver`
-6. This should run on the default `8000` port, open `127.0.0.1:8000` on any browser.
+7. This should run on the default `8000` port, open `127.0.0.1:8000` on any browser.
 
 > For admin, redirect to `127.0.0.1:8000/admin/` and enter default credentials `username: admin, password: admin`.
 
