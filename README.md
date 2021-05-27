@@ -38,6 +38,8 @@ After cloning the repo
 7. This should run on the default `8000` port, open `127.0.0.1:8000` on any browser.
 
 > For admin, redirect to `127.0.0.1:8000/admin/` and enter default credentials `username: admin, password: admin`.
+> For convener (ACM) `username: ece_stud1, password: pass`
+> For student (ACM) `username: ece_stud2, password: pass`
 
 ## Bugs/Not completed features
 
